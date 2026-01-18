@@ -114,6 +114,14 @@ function wpm_register_settings()
         'welcome-popup-manager',
         'wpm_main_section'
     );
+
+    add_settings_field(
+    'wpm_display_mode',
+    'Frecuencia de visualización',
+    'wpm_display_mode_field_callback',
+    'welcome-popup-manager',
+    'wpm_main_section'
+);
 }
 
 /**
