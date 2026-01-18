@@ -1,0 +1,50 @@
+#wpm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.wpm-popup {
+    max-width: 500px;
+    width: 90%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all .25s ease;
+}
+
+.wpm-popup.is-visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.wpm-popup-content {
+    padding: 20px;
+}
+
+.wpm-popup img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+/* Botón cerrar */
+.wpm-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
