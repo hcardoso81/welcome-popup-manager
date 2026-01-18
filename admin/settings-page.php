@@ -9,7 +9,8 @@ add_action('admin_init', 'wpm_register_settings');
 
 add_action('admin_enqueue_scripts', 'wpm_admin_scripts');
 
-function wpm_admin_scripts($hook) {
+function wpm_admin_scripts($hook)
+{
     if ($hook !== 'toplevel_page_welcome-popup-manager') {
         return;
     }
@@ -97,6 +98,22 @@ function wpm_register_settings()
         'welcome-popup-manager',
         'wpm_main_section'
     );
+
+    add_settings_field(
+        'wpm_delay_enabled',
+        'Delay',
+        'wpm_delay_enabled_field_callback',
+        'welcome-popup-manager',
+        'wpm_main_section'
+    );
+
+    add_settings_field(
+        'wpm_delay_seconds',
+        'Segundos de delay',
+        'wpm_delay_seconds_field_callback',
+        'welcome-popup-manager',
+        'wpm_main_section'
+    );
 }
 
 /**
@@ -128,17 +145,17 @@ function wpm_link_field_callback()
 <?php
 }
 
-function wpm_image_field_callback() {
+function wpm_image_field_callback()
+{
     $options = get_option('wpm_settings');
     $image = $options['image'] ?? '';
-    ?>
+?>
     <div>
         <input
             type="hidden"
             id="wpm_image"
             name="wpm_settings[image]"
-            value="<?php echo esc_url($image); ?>"
-        />
+            value="<?php echo esc_url($image); ?>" />
 
         <button type="button" class="button" id="wpm_image_upload">
             Seleccionar imagen
@@ -148,10 +165,42 @@ function wpm_image_field_callback() {
             <img
                 id="wpm_image_preview"
                 src="<?php echo esc_url($image); ?>"
-                style="max-width:200px;<?php echo empty($image) ? 'display:none;' : ''; ?>"
-            />
+                style="max-width:200px;<?php echo empty($image) ? 'display:none;' : ''; ?>" />
         </div>
     </div>
+<?php
+}
+
+function wpm_delay_enabled_field_callback() {
+    $options = get_option('wpm_settings');
+    $checked = !empty($options['delay_enabled']);
+    ?>
+    <label>
+        <input
+            type="checkbox"
+            name="wpm_settings[delay_enabled]"
+            value="1"
+            <?php checked($checked); ?>
+        />
+        Mostrar el popup después de un tiempo
+    </label>
     <?php
 }
+
+function wpm_delay_seconds_field_callback() {
+    $options = get_option('wpm_settings');
+    $value = $options['delay_seconds'] ?? 0;
+    ?>
+    <input
+        type="number"
+        name="wpm_settings[delay_seconds]"
+        value="<?php echo esc_attr($value); ?>"
+        min="0"
+        step="1"
+        class="small-text"
+    />
+    <span>segundos</span>
+    <?php
+}
+
 
