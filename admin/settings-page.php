@@ -211,4 +211,16 @@ function wpm_delay_seconds_field_callback() {
     <?php
 }
 
+function wpm_display_mode_field_callback() {
+    $options = get_option('wpm_settings');
+
+    $value = $options['display_mode'] ?? 'auto';
+    ?>
+    <select name="wpm_settings[display_mode]">
+        <option value="auto" <?php selected($value, 'auto'); ?>>Automático</option>
+        <option value="manual" <?php selected($value, 'manual'); ?>>Manual</option>
+    </select>
+    <?php
+}
+
 
