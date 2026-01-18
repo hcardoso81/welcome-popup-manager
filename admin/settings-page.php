@@ -116,19 +116,21 @@ function wpm_register_settings()
     );
 
     add_settings_field(
-    'wpm_display_mode',
-    'Frecuencia de visualización',
-    'wpm_display_mode_field_callback',
-    'welcome-popup-manager',
-    'wpm_main_section'
-);
+        'wpm_display_mode',
+        'Frecuencia de visualización',
+        'wpm_display_mode_field_callback',
+        'welcome-popup-manager',
+        'wpm_main_section'
+    );
 }
 
-function wpm_sanitize_settings($input) {
+function wpm_sanitize_settings($input)
+{
     $output = [];
 
     $output['description'] = sanitize_textarea_field($input['description'] ?? '');
     $output['link'] = esc_url_raw($input['link'] ?? '');
+    $output['image'] = esc_url_raw($input['image'] ?? '');
 
     $output['delay_enabled'] = isset($input['delay_enabled']) ? '1' : '0';
 
@@ -136,24 +138,26 @@ function wpm_sanitize_settings($input) {
         ? absint($input['delay_seconds'])
         : 0;
 
-$output['display_mode'] = in_array($input['display_mode'] ?? '', ['auto', 'manual'], true)
-    ? $input['display_mode']
-    : 'auto';
+    $output['display_mode'] = in_array($input['display_mode'] ?? '', ['auto', 'manual'], true)
+        ? $input['display_mode']
+        : 'auto';
 
 
     return $output;
 }
 
 
-function wpm_get_settings() {
+function wpm_get_settings()
+{
     $defaults = [
         'description'   => '',
         'link'          => '',
-        'display_mode'  => 'immediate',
+        'image'         => '',
+        'delay_enabled' => '0',
         'delay_seconds' => 5,
-        'show_once'     => '1',
-        'display_mode' => 'auto',
+        'display_mode'  => 'auto',
     ];
+
 
     return wp_parse_args(get_option('wpm_settings', []), $defaults);
 }
@@ -213,48 +217,47 @@ function wpm_image_field_callback()
 <?php
 }
 
-function wpm_delay_enabled_field_callback() {
+function wpm_delay_enabled_field_callback()
+{
     $options = wpm_get_settings();
     $checked = !empty($options['delay_enabled']);
-    ?>
+?>
     <label>
         <input
             type="checkbox"
             name="wpm_settings[delay_enabled]"
             value="1"
-            <?php checked($checked); ?>
-        />
+            <?php checked($checked); ?> />
         Mostrar el popup después de un tiempo
     </label>
-    <?php
+<?php
 }
 
-function wpm_delay_seconds_field_callback() {
+function wpm_delay_seconds_field_callback()
+{
     $options = wpm_get_settings();
     $value = $options['delay_seconds'] ?? 0;
-    ?>
+?>
     <input
         type="number"
         name="wpm_settings[delay_seconds]"
         value="<?php echo esc_attr($value); ?>"
         min="0"
         step="1"
-        class="small-text"
-    />
+        class="small-text" />
     <span>segundos</span>
-    <?php
+<?php
 }
 
-function wpm_display_mode_field_callback() {
+function wpm_display_mode_field_callback()
+{
     $options = wpm_get_settings();
 
     $value = $options['display_mode'] ?? 'auto';
-    ?>
+?>
     <select name="wpm_settings[display_mode]">
         <option value="auto" <?php selected($value, 'auto'); ?>>Automático</option>
         <option value="manual" <?php selected($value, 'manual'); ?>>Manual</option>
     </select>
-    <?php
+<?php
 }
-
-
