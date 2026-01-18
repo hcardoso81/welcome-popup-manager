@@ -14,3 +14,24 @@ if (!defined('ABSPATH')) {
 }
 
 require_once plugin_dir_path(__FILE__) . 'admin/settings-page.php';
+
+add_action('wp_enqueue_scripts', 'wpm_enqueue_public_assets');
+
+function wpm_enqueue_public_assets() {
+    wp_enqueue_style(
+        'wpm-popup',
+        plugin_dir_url(__FILE__) . 'public/popup.css',
+        [],
+        '1.0.0'
+    );
+
+    wp_enqueue_script(
+        'wpm-popup',
+        plugin_dir_url(__FILE__) . 'public/popup.js',
+        [],
+        '1.0.0',
+        true
+    );
+
+    wp_localize_script('wpm-popup', 'wpmSettings', wpm_get_settings());
+}

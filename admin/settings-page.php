@@ -66,7 +66,7 @@ function wpm_render_settings_page()
 function wpm_register_settings()
 {
 
-    register_setting('wpm_settings_group', 'wpm_settings');
+    register_setting('wpm_settings_group', 'wpm_settings', 'wpm_sanitize_settings');
 
     add_settings_section(
         'wpm_main_section',
@@ -124,12 +124,46 @@ function wpm_register_settings()
 );
 }
 
+function wpm_sanitize_settings($input) {
+    $output = [];
+
+    $output['description'] = sanitize_textarea_field($input['description'] ?? '');
+    $output['link'] = esc_url_raw($input['link'] ?? '');
+
+    $output['delay_enabled'] = isset($input['delay_enabled']) ? '1' : '0';
+
+    $output['delay_seconds'] = isset($input['delay_seconds'])
+        ? absint($input['delay_seconds'])
+        : 0;
+
+$output['display_mode'] = in_array($input['display_mode'] ?? '', ['auto', 'manual'], true)
+    ? $input['display_mode']
+    : 'auto';
+
+
+    return $output;
+}
+
+
+function wpm_get_settings() {
+    $defaults = [
+        'description'   => '',
+        'link'          => '',
+        'display_mode'  => 'immediate',
+        'delay_seconds' => 5,
+        'show_once'     => '1',
+        'display_mode' => 'auto',
+    ];
+
+    return wp_parse_args(get_option('wpm_settings', []), $defaults);
+}
+
 /**
  * Fields
  */
 function wpm_description_field_callback()
 {
-    $options = get_option('wpm_settings');
+    $options = wpm_get_settings();
     $value = $options['description'] ?? '';
 ?>
     <textarea
@@ -141,7 +175,7 @@ function wpm_description_field_callback()
 
 function wpm_link_field_callback()
 {
-    $options = get_option('wpm_settings');
+    $options = wpm_get_settings();
     $value = $options['link'] ?? '';
 ?>
     <input
@@ -155,7 +189,7 @@ function wpm_link_field_callback()
 
 function wpm_image_field_callback()
 {
-    $options = get_option('wpm_settings');
+    $options = wpm_get_settings();
     $image = $options['image'] ?? '';
 ?>
     <div>
@@ -180,7 +214,7 @@ function wpm_image_field_callback()
 }
 
 function wpm_delay_enabled_field_callback() {
-    $options = get_option('wpm_settings');
+    $options = wpm_get_settings();
     $checked = !empty($options['delay_enabled']);
     ?>
     <label>
@@ -196,7 +230,7 @@ function wpm_delay_enabled_field_callback() {
 }
 
 function wpm_delay_seconds_field_callback() {
-    $options = get_option('wpm_settings');
+    $options = wpm_get_settings();
     $value = $options['delay_seconds'] ?? 0;
     ?>
     <input
@@ -212,7 +246,7 @@ function wpm_delay_seconds_field_callback() {
 }
 
 function wpm_display_mode_field_callback() {
-    $options = get_option('wpm_settings');
+    $options = wpm_get_settings();
 
     $value = $options['display_mode'] ?? 'auto';
     ?>
