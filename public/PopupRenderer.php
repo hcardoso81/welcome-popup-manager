@@ -6,8 +6,23 @@ if (!defined('ABSPATH')) {
 
 final class WPM_PopupRenderer
 {
+    private static WPM_Settings $settings;
+    private static WPM_PopupRules $rules;
+
     public static function init(): void
     {
+        self::$settings = WPM_Settings::fromWp();
+        self::$rules    = new WPM_PopupRules(self::$settings);
+
+        add_action('wp', [self::class, 'register']);
+    }
+
+    public static function register(): void
+    {
+        if (!self::$rules->canDisplay()) {
+            return;
+        }
+
         add_action('wp_enqueue_scripts', [self::class, 'enqueueAssets']);
         add_action('wp_footer', [self::class, 'render']);
     }
@@ -32,18 +47,15 @@ final class WPM_PopupRenderer
 
     public static function render(): void
     {
-        $settings = WPM_Settings::fromWp();
-        $rules    = new WPM_PopupRules($settings);
-
-        if (!$rules->shouldShow()) {
+        if (!self::$rules->shouldShow()) {
             return;
         }
 
         $data = [
-            'description' => $settings->description(),
-            'link'        => $settings->link(),
-            'image'       => $settings->image(),
-            'delay_ms'    => $rules->delayMs(),
+            'description' => self::$settings->description(),
+            'link'        => self::$settings->link(),
+            'image'       => self::$settings->image(),
+            'delay_ms'    => self::$rules->delayMs(),
         ];
 
         require WPM_PLUGIN_PATH . 'public/views/popup.php';

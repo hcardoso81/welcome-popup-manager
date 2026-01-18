@@ -13,6 +13,15 @@ final class WPM_PopupRules
         $this->settings = $settings;
     }
 
+    public static function canDisplay(): bool
+    {
+        if (!is_front_page() && !is_home()) {
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * Regla principal
      */
