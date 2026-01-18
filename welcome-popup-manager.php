@@ -45,6 +45,11 @@ function wpm_enqueue_frontend_assets() {
 add_action('wp_footer', 'wpm_render_popup');
 
 function wpm_render_popup() {
+
+   if (!is_front_page()) {
+        return;
+    }
+    
     $settings = wpm_get_settings();
 
     if (empty($settings['image']) && empty($settings['description'])) {

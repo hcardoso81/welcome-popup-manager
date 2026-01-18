@@ -27,4 +27,21 @@ jQuery(document).ready(function ($) {
 
         frame.open();
     });
+
+    const delayCheckbox = $('input[name="wpm_settings[delay_enabled]"]');
+    const delayWrapper = $('#wpm-delay-seconds-wrapper');
+    const delayInput = delayWrapper.find('input');
+
+    function toggleDelayField() {
+        if (delayCheckbox.is(':checked')) {
+            delayWrapper.show();
+        } else {
+            delayInput.val(0);
+            delayWrapper.hide();
+        }
+    }
+
+    toggleDelayField();
+
+    delayCheckbox.on('change', toggleDelayField);
 });

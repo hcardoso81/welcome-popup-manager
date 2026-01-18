@@ -233,21 +233,24 @@ function wpm_delay_enabled_field_callback()
 <?php
 }
 
-function wpm_delay_seconds_field_callback()
-{
+function wpm_delay_seconds_field_callback() {
     $options = wpm_get_settings();
     $value = $options['delay_seconds'] ?? 0;
-?>
-    <input
-        type="number"
-        name="wpm_settings[delay_seconds]"
-        value="<?php echo esc_attr($value); ?>"
-        min="0"
-        step="1"
-        class="small-text" />
-    <span>segundos</span>
-<?php
+    ?>
+    <div id="wpm-delay-seconds-wrapper">
+        <input
+            type="number"
+            name="wpm_settings[delay_seconds]"
+            value="<?php echo esc_attr($value); ?>"
+            min="0"
+            step="1"
+            class="small-text"
+        />
+        <span>segundos</span>
+    </div>
+    <?php
 }
+
 
 function wpm_display_mode_field_callback()
 {
@@ -256,8 +259,8 @@ function wpm_display_mode_field_callback()
     $value = $options['display_mode'] ?? 'auto';
 ?>
     <select name="wpm_settings[display_mode]">
-        <option value="auto" <?php selected($value, 'auto'); ?>>Automático</option>
-        <option value="manual" <?php selected($value, 'manual'); ?>>Manual</option>
+        <option value="auto" <?php selected($value, 'auto'); ?>>Mostrar siempre que inicie la home</option>
+        <option value="manual" <?php selected($value, 'manual'); ?>>Mostrar solo una vez</option>
     </select>
 <?php
 }
