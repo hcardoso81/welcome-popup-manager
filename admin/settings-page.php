@@ -47,4 +47,48 @@ function wpm_register_settings() {
     );
 }
 
+add_settings_field(
+    'wpm_description',
+    'Descripción',
+    'wpm_description_field_callback',
+    'welcome-popup-manager',
+    'wpm_main_section'
+);
+
+add_settings_field(
+    'wpm_link',
+    'Link de la imagen',
+    'wpm_link_field_callback',
+    'welcome-popup-manager',
+    'wpm_main_section'
+);
+
+function wpm_description_field_callback() {
+    $options = get_option('wpm_settings');
+    $value = isset($options['description']) ? esc_textarea($options['description']) : '';
+    ?>
+    <textarea
+        name="wpm_settings[description]"
+        rows="5"
+        cols="50"
+        class="large-text"
+    ><?php echo $value; ?></textarea>
+    <?php
+}
+
+function wpm_link_field_callback() {
+    $options = get_option('wpm_settings');
+    $value = isset($options['link']) ? esc_url($options['link']) : '';
+    ?>
+    <input
+        type="url"
+        name="wpm_settings[link]"
+        value="<?php echo $value; ?>"
+        class="regular-text"
+        placeholder="https://ejemplo.com"
+    />
+    <?php
+}
+
+
 
