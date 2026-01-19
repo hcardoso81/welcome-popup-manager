@@ -1,4 +1,5 @@
 <?php
+// admin/SettingsPageController.php
 
 if (!defined('ABSPATH')) {
     exit;

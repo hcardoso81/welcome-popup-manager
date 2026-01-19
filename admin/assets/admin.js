@@ -1,6 +1,4 @@
-//admin/assets/admin.js
 jQuery(document).ready(function ($) {
-
 
     /* =====================================================
        IMAGE UPLOADER
@@ -9,6 +7,7 @@ jQuery(document).ready(function ($) {
 
     $('#wpm_image_upload').on('click', function (e) {
         e.preventDefault();
+        alert('Click en upload imagen');
 
         if (frame) {
             frame.open();
@@ -30,45 +29,67 @@ jQuery(document).ready(function ($) {
             $('#wpm_image_preview')
                 .attr('src', attachment.url)
                 .show();
+
+            alert('Imagen seleccionada');
         });
 
         frame.open();
     });
 
     /* =====================================================
-       ENABLED → SHOW / HIDE ALL SETTINGS
+       ENABLED → SHOW / HIDE ALL SETTINGS (DEBUG)
     ===================================================== */
+
     const enabledCheckbox = $('input[name="wpm_settings[enabled]"]');
-    const settingsPanel  = $('#wpm-settings-options');
+
+    const table = enabledCheckbox.closest('table');
+
+    const rowsToToggle = table.find('tr').not(':first');
 
     function toggleSettingsPanel() {
-        if (enabledCheckbox.is(':checked')) {
-            settingsPanel.show();
+        const checked = enabledCheckbox.is(':checked');
+
+        if (checked) {
+            rowsToToggle.show();
         } else {
-            settingsPanel.hide();
+            rowsToToggle.hide();
         }
     }
 
     toggleSettingsPanel();
-    enabledCheckbox.on('change', toggleSettingsPanel);
 
-    /* =====================================================
-       DELAY ENABLED → SHOW / HIDE SECONDS FIELD
-    ===================================================== */
-    const delayCheckbox = $('input[name="wpm_settings[delay_enabled]"]');
-    const delayWrapper  = $('#wpm-delay-seconds-wrapper');
-    const delayInput    = delayWrapper.find('input');
+    enabledCheckbox.on('change', function () {
+        toggleSettingsPanel();
+    });
 
-    function toggleDelayField() {
-        if (delayCheckbox.is(':checked')) {
-            delayWrapper.show();
-        } else {
-            delayInput.val(0);
-            delayWrapper.hide();
-        }
+/* =====================================================
+   DELAY ENABLED → SHOW / HIDE DELAY SECONDS FIELD
+===================================================== */
+
+const delayEnabledCheckbox = $('input[name="wpm_settings[delay_enabled]"]');
+
+// TR del checkbox delay (por claridad)
+const delayEnabledRow = delayEnabledCheckbox.closest('tr');
+
+// TR del input seconds
+const delaySecondsRow = $('input[name="wpm_settings[delay_seconds]"]').closest('tr');
+
+function toggleDelaySeconds() {
+    const checked = delayEnabledCheckbox.is(':checked');
+
+    if (checked) {
+        delaySecondsRow.show();
+    } else {
+        delaySecondsRow.hide();
     }
+}
 
-    toggleDelayField();
-    delayCheckbox.on('change', toggleDelayField);
+// Estado inicial al cargar la página
+toggleDelaySeconds();
+
+// Cambio en vivo
+delayEnabledCheckbox.on('change', function () {
+    toggleDelaySeconds();
+});
 
 });

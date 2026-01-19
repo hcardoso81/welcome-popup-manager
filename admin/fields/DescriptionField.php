@@ -1,4 +1,5 @@
 <?php
+// admin/fields/DescriptionField.php
 
 if (!defined('ABSPATH')) {
     exit;

@@ -18,7 +18,7 @@ class WPM_DelayEnabledField {
                 value="1"
                 <?php checked($checked); ?>
             />
-            Mostrar el popup después de un tiempo
+            Mostrar el popup después de un tiempo (Opcion destildada: aparece inmediatamente)
         </label>
         <?php
     }

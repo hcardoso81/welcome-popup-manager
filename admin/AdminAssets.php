@@ -18,7 +18,7 @@ class WPM_AdminAssets
          * OPCIONAL pero recomendado:
          * Cargar solo en tu página de settings
          */
-        if ($hook !== 'settings_page_wpm-settings') {
+        if ($hook !== 'toplevel_page_welcome-popup-manager') {
             return;
         }
 
