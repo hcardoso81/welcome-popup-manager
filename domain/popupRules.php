@@ -1,4 +1,5 @@
 <?php
+// domain/PopupRules.php
 
 if (!defined('ABSPATH')) {
     exit;
@@ -25,8 +26,14 @@ final class WPM_PopupRules
     /**
      * Regla principal
      */
+
     public function shouldShow(): bool
     {
+
+        if (!$this->settings->isEnabled()) {
+            return false;
+        }
+
         if ($this->hasNoImage()) {
             return false;
         }

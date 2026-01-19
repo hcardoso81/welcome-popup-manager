@@ -1,4 +1,10 @@
+//admin/assets/admin.js
 jQuery(document).ready(function ($) {
+
+
+    /* =====================================================
+       IMAGE UPLOADER
+    ===================================================== */
     let frame;
 
     $('#wpm_image_upload').on('click', function (e) {
@@ -19,6 +25,7 @@ jQuery(document).ready(function ($) {
 
         frame.on('select', function () {
             const attachment = frame.state().get('selection').first().toJSON();
+
             $('#wpm_image').val(attachment.url);
             $('#wpm_image_preview')
                 .attr('src', attachment.url)
@@ -28,9 +35,29 @@ jQuery(document).ready(function ($) {
         frame.open();
     });
 
+    /* =====================================================
+       ENABLED → SHOW / HIDE ALL SETTINGS
+    ===================================================== */
+    const enabledCheckbox = $('input[name="wpm_settings[enabled]"]');
+    const settingsPanel  = $('#wpm-settings-options');
+
+    function toggleSettingsPanel() {
+        if (enabledCheckbox.is(':checked')) {
+            settingsPanel.show();
+        } else {
+            settingsPanel.hide();
+        }
+    }
+
+    toggleSettingsPanel();
+    enabledCheckbox.on('change', toggleSettingsPanel);
+
+    /* =====================================================
+       DELAY ENABLED → SHOW / HIDE SECONDS FIELD
+    ===================================================== */
     const delayCheckbox = $('input[name="wpm_settings[delay_enabled]"]');
-    const delayWrapper = $('#wpm-delay-seconds-wrapper');
-    const delayInput = delayWrapper.find('input');
+    const delayWrapper  = $('#wpm-delay-seconds-wrapper');
+    const delayInput    = delayWrapper.find('input');
 
     function toggleDelayField() {
         if (delayCheckbox.is(':checked')) {
@@ -42,6 +69,6 @@ jQuery(document).ready(function ($) {
     }
 
     toggleDelayField();
-
     delayCheckbox.on('change', toggleDelayField);
+
 });

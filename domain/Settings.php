@@ -1,4 +1,5 @@
 <?php
+// domain/Settings.php
 
 if (!defined('ABSPATH')) {
     exit;
@@ -43,6 +44,10 @@ final class WPM_Settings
     /* ======================
        Getters del dominio
        ====================== */
+    public function isEnabled(): bool
+    {
+        return !empty($this->values['enabled']);
+    }
 
     public function description(): string
     {

@@ -1,4 +1,5 @@
 <?php
+// bootstrap/admin.php
 
 if (!defined('ABSPATH')) {
     exit;
@@ -24,6 +25,10 @@ require_once WPM_PLUGIN_PATH . 'admin/SettingsPageController.php';
 require_once WPM_PLUGIN_PATH . 'domain/Settings.php';
 require_once WPM_PLUGIN_PATH . 'domain/SettingsSanitizer.php';
 
+require_once WPM_PLUGIN_PATH . 'admin/fields/SettingsStartField.php';
+require_once WPM_PLUGIN_PATH . 'admin/fields/SettingsEndField.php';
+
+require_once WPM_PLUGIN_PATH . 'admin/fields/EnabledField.php';
 require_once WPM_PLUGIN_PATH . 'admin/fields/DescriptionField.php';
 require_once WPM_PLUGIN_PATH . 'admin/fields/LinkField.php';
 require_once WPM_PLUGIN_PATH . 'admin/fields/ImageField.php';
@@ -34,4 +39,6 @@ require_once WPM_PLUGIN_PATH . 'admin/fields/DisplayModeField.php';
 /**
  * Inicialización
  */
+WPM_AdminAssets::init(); 
 WPM_SettingsPageController::init();
+

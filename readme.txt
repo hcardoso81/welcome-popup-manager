@@ -5,6 +5,9 @@ welcome-popup-manager/
 │   ├── AdminAssets.php
 │   ├── SettingsPageController.php
 │   ├── SettingsRegistry.php
+│   ├── assets/
+|   |   └── admin.js
+|   |
 │   └── fields/
 │       ├── DescriptionField.php
 │       ├── LinkField.php

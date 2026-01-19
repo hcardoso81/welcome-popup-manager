@@ -1,12 +1,15 @@
 <?php
+// admin/SettingsRegistry.php
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class WPM_SettingsRegistry {
+class WPM_SettingsRegistry
+{
 
-    public static function register(): void {
+    public static function register(): void
+    {
 
         register_setting(
             'wpm_settings_group',
@@ -24,7 +27,26 @@ class WPM_SettingsRegistry {
         self::registerFields();
     }
 
-    private static function registerFields(): void {
+    private static function registerFields(): void
+    {
+
+        add_settings_field(
+            'wpm_enabled',
+            'Estado',
+            [WPM_EnabledField::class, 'render'],
+            'welcome-popup-manager',
+            'wpm_main_section'
+        );
+
+        // ABRIMOS PANEL
+        add_settings_field(
+            'wpm_start',
+            '',
+            [WPM_SettingsStartField::class, 'render'],
+            'welcome-popup-manager',
+            'wpm_main_section'
+        );
+
 
         add_settings_field(
             'wpm_description',
@@ -70,6 +92,14 @@ class WPM_SettingsRegistry {
             'wpm_display_mode',
             'Frecuencia de visualización',
             [WPM_DisplayModeField::class, 'render'],
+            'welcome-popup-manager',
+            'wpm_main_section'
+        );
+
+        add_settings_field(
+            'wpm_end',
+            '',
+            [WPM_SettingsEndField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );
