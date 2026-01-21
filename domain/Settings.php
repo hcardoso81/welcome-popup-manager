@@ -1,11 +1,12 @@
 <?php
 // domain/Settings.php
+namespace WPM\Domain;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-final class WPM_Settings
+final class Settings
 {
     private array $values;
 
@@ -32,6 +33,7 @@ final class WPM_Settings
     public static function defaults(): array
     {
         return [
+             'enabled'       => false,
             'description'   => '',
             'link'          => '',
             'image'         => '',

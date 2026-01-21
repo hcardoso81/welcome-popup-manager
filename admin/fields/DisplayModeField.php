@@ -1,13 +1,17 @@
 <?php
 
+namespace WPM\Admin\Fields;
+
+use WPM\Domain\Settings;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class WPM_DisplayModeField {
+class DisplayModeField {
 
     public static function render(): void {
-        $settings = WPM_Settings::fromWp();
+        $settings = Settings::fromWp();
         $value = $settings->displayMode();
         ?>
         <select name="wpm_settings[display_mode]">

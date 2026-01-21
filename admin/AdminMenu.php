@@ -1,10 +1,12 @@
 <?php
 
+namespace WPM\Admin;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class WPM_AdminMenu {
+class AdminMenu {
 
     public static function register(): void {
         add_menu_page(

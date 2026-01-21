@@ -1,6 +1,11 @@
 <?php
 // bootstrap/admin.php
 
+namespace WPM\Bootstrap;
+
+use WPM\Admin\AdminAssets;
+use WPM\Admin\SettingsPageController;
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -39,6 +44,6 @@ require_once WPM_PLUGIN_PATH . 'admin/fields/DisplayModeField.php';
 /**
  * Inicialización
  */
-WPM_AdminAssets::init(); 
-WPM_SettingsPageController::init();
+AdminAssets::init(); 
+SettingsPageController::init();
 

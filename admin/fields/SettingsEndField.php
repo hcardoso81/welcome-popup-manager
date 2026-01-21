@@ -1,6 +1,8 @@
 <?php
+
+namespace WPM\Admin\Fields;
 // admin/fields/SettingsEndField.php
-class WPM_SettingsEndField {
+class SettingsEndField {
     public static function render() {
         echo '</div>';
     }

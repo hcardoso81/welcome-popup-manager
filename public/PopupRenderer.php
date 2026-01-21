@@ -1,18 +1,23 @@
 <?php
 
+namespace WPM\PublicSite;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-final class WPM_PopupRenderer
+use WPM\Domain\Settings;
+use WPM\Domain\PopupRules;
+
+final class PopupRenderer
 {
-    private static WPM_Settings $settings;
-    private static WPM_PopupRules $rules;
+    private static Settings $settings;
+    private static PopupRules $rules;
 
     public static function init(): void
     {
-        self::$settings = WPM_Settings::fromWp();
-        self::$rules    = new WPM_PopupRules(self::$settings);
+        self::$settings = Settings::fromWp();
+        self::$rules    = new PopupRules(self::$settings);
 
         add_action('wp', [self::class, 'register']);
     }

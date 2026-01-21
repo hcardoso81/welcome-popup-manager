@@ -1,20 +1,22 @@
 <?php
 // domain/PopupRules.php
 
+namespace WPM\Domain;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-final class WPM_PopupRules
+final class PopupRules
 {
-    private WPM_Settings $settings;
+    private Settings $settings;
 
-    public function __construct(WPM_Settings $settings)
+    public function __construct(Settings $settings)
     {
         $this->settings = $settings;
     }
 
-    public static function canDisplay(): bool
+    public function canDisplay(): bool
     {
         if (!is_front_page() && !is_home()) {
             return false;
@@ -22,7 +24,6 @@ final class WPM_PopupRules
 
         return true;
     }
-
     /**
      * Regla principal
      */

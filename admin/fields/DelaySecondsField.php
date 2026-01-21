@@ -1,13 +1,17 @@
 <?php
 
+namespace WPM\Admin\Fields;
+
+use WPM\Domain\Settings;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class WPM_DelaySecondsField {
+class DelaySecondsField {
 
     public static function render(): void {
-        $settings = WPM_Settings::fromWp();
+        $settings = Settings::fromWp();
         $value = $settings->delaySeconds();
         ?>
         <input

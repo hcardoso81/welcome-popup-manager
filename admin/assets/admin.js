@@ -7,7 +7,6 @@ jQuery(document).ready(function ($) {
 
     $('#wpm_image_upload').on('click', function (e) {
         e.preventDefault();
-        alert('Click en upload imagen');
 
         if (frame) {
             frame.open();
@@ -30,7 +29,6 @@ jQuery(document).ready(function ($) {
                 .attr('src', attachment.url)
                 .show();
 
-            alert('Imagen seleccionada');
         });
 
         frame.open();

@@ -1,11 +1,13 @@
 <?php
 // admin/AdminAssets.php
 
+namespace WPM\Admin;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class WPM_AdminAssets
+class AdminAssets
 {
     public static function init(): void
     {

@@ -10,9 +10,12 @@
  * Text Domain: welcome-popup-manager
  */
 
+namespace WPM;
+
 if (!defined('ABSPATH')) {
     exit;
 }
+
 
 define('WPM_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('WPM_PLUGIN_URL', plugin_dir_url(__FILE__));

@@ -1,11 +1,25 @@
 <?php
 // admin/SettingsRegistry.php
 
+namespace WPM\Admin;
+
+use WPM\Domain\SettingsSanitizer;
+
+use WPM\Admin\Fields\EnabledField;
+use WPM\Admin\Fields\SettingsStartField;
+use WPM\Admin\Fields\DescriptionField;
+use WPM\Admin\Fields\LinkField;
+use WPM\Admin\Fields\ImageField;
+use WPM\Admin\Fields\DelayEnabledField;
+use WPM\Admin\Fields\DelaySecondsField;
+use WPM\Admin\Fields\DisplayModeField;
+use WPM\Admin\Fields\SettingsEndField;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class WPM_SettingsRegistry
+class SettingsRegistry
 {
 
     public static function register(): void
@@ -14,7 +28,7 @@ class WPM_SettingsRegistry
         register_setting(
             'wpm_settings_group',
             'wpm_settings',
-            ['sanitize_callback' => [WPM_SettingsSanitizer::class, 'sanitize']]
+            ['sanitize_callback' => [SettingsSanitizer::class, 'sanitize']]
         );
 
         add_settings_section(
@@ -33,7 +47,7 @@ class WPM_SettingsRegistry
         add_settings_field(
             'wpm_enabled',
             'Estado',
-            [WPM_EnabledField::class, 'render'],
+            [EnabledField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );
@@ -42,7 +56,7 @@ class WPM_SettingsRegistry
         add_settings_field(
             'wpm_start',
             '',
-            [WPM_SettingsStartField::class, 'render'],
+            [SettingsStartField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );
@@ -51,7 +65,7 @@ class WPM_SettingsRegistry
         add_settings_field(
             'wpm_description',
             'Descripción',
-            [WPM_DescriptionField::class, 'render'],
+            [DescriptionField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );
@@ -59,7 +73,7 @@ class WPM_SettingsRegistry
         add_settings_field(
             'wpm_link',
             'Link de la imagen',
-            [WPM_LinkField::class, 'render'],
+            [LinkField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );
@@ -67,7 +81,7 @@ class WPM_SettingsRegistry
         add_settings_field(
             'wpm_image',
             'Imagen del popup',
-            [WPM_ImageField::class, 'render'],
+            [ImageField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );
@@ -75,7 +89,7 @@ class WPM_SettingsRegistry
         add_settings_field(
             'wpm_delay_enabled',
             'Delay',
-            [WPM_DelayEnabledField::class, 'render'],
+            [DelayEnabledField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );
@@ -83,7 +97,7 @@ class WPM_SettingsRegistry
         add_settings_field(
             'wpm_delay_seconds',
             'Segundos de delay',
-            [WPM_DelaySecondsField::class, 'render'],
+            [DelaySecondsField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );
@@ -91,7 +105,7 @@ class WPM_SettingsRegistry
         add_settings_field(
             'wpm_display_mode',
             'Frecuencia de visualización',
-            [WPM_DisplayModeField::class, 'render'],
+            [DisplayModeField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );
@@ -99,7 +113,7 @@ class WPM_SettingsRegistry
         add_settings_field(
             'wpm_end',
             '',
-            [WPM_SettingsEndField::class, 'render'],
+            [SettingsEndField::class, 'render'],
             'welcome-popup-manager',
             'wpm_main_section'
         );

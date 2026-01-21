@@ -1,11 +1,12 @@
 <?php
 // domain/SettingsSanitizer.php
+namespace WPM\Domain;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-final class WPM_SettingsSanitizer
+final class SettingsSanitizer
 {
     public static function sanitize(array $input): array
     {
