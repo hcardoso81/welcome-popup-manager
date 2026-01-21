@@ -34,4 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // (opcional) Click en overlay → cerrar
     overlay.addEventListener('click', closeModal);
+
+        // Cerrar con tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
+            closeModal();
+        }
+    });
 });
