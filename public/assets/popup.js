@@ -1,20 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('wpm-overlay');
-    const popup = overlay?.querySelector('.wpm-popup');
-    const closeBtn = popup?.querySelector('.wpm-close');
+    const modal = overlay?.querySelector('.wpm-modal');
+    const closeBtn = modal?.querySelector('.wpm-close');
 
-    if (!overlay || !popup) return;
+    if (!overlay || !modal) return;
 
-    const delay = parseInt(popup.dataset.delay, 10) || 0;
+    const delay = parseInt(modal.dataset.delay, 10) || 0;
 
     setTimeout(() => {
         overlay.style.display = 'flex';
-        popup.classList.add('is-visible');
+        modal.classList.add('is-visible');
         document.cookie = 'wpm_popup_shown=1; path=/';
     }, delay);
 
-    // Click en overlay → cerrar
-    overlay.addEventListener('click', () => {
+    closeBtn?.addEventListener('click', () => {
         overlay.remove();
     });
 
