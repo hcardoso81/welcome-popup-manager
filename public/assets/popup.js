@@ -7,23 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const delay = parseInt(modal.dataset.delay, 10) || 0;
 
-    setTimeout(() => {
+    const openModal = () => {
         overlay.style.display = 'flex';
         modal.classList.add('is-visible');
+        document.body.classList.add('wpm-modal-open');
+
         document.cookie = 'wpm_popup_shown=1; path=/';
-    }, delay);
+    };
 
-    closeBtn?.addEventListener('click', () => {
-        overlay.remove();
-    });
+    const closeModal = () => {
+        modal.classList.remove('is-visible');
+        document.body.classList.remove('wpm-modal-open');
+        overlay.style.display = 'none';
+    };
 
-    // Click dentro del popup → no cerrar
-    popup.addEventListener('click', (e) => {
+    // Abrir modal con delay
+    setTimeout(openModal, delay);
+
+    // Botón cerrar
+    closeBtn?.addEventListener('click', closeModal);
+
+    // Click dentro del modal → no cerrar
+    modal.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 
-    // Botón cerrar
-    closeBtn?.addEventListener('click', () => {
-        overlay.remove();
-    });
+    // (opcional) Click en overlay → cerrar
+    overlay.addEventListener('click', closeModal);
 });

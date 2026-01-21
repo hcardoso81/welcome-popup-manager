@@ -1,3 +1,7 @@
+body.wpm-modal-open {
+    overflow: hidden;
+}
+
 /* Overlay = pantalla completa */
 #wpm-overlay {
     position: fixed;
