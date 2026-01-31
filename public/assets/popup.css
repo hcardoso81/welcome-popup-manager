@@ -1,16 +1,25 @@
 body.wpm-modal-open {
     overflow: hidden;
+    height: 100vh;
+    touch-action: none;
 }
 
-/* Overlay = pantalla completa */
+/* Overlay realmente fullscreen */
 #wpm-overlay {
     position: fixed;
-    inset: 0;
-    background: #fff; /* fondo blanco */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background: #fff;
     z-index: 99999;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    overscroll-behavior: none;
 }
 
 /* Modal fullscreen */
@@ -53,20 +62,52 @@ body.wpm-modal-open {
     margin: 0 auto;
 }
 
-/* Texto */
-.wpm-description {
-    font-size: 18px;
-    margin-bottom: 24px;
-}
-
-/* Botón cerrar */
 .wpm-close {
     position: absolute;
     top: 24px;
     right: 24px;
 
-    background: none;
+    width: 48px;
+    height: 48px;
+
+    background-color: #604c8d;
+    color: #fff;
     border: none;
+
     font-size: 32px;
+    line-height: 48px; /* centra la X verticalmente */
+    text-align: center;
+
     cursor: pointer;
+    border-radius: 6px; /* o 0 si lo querés bien cuadrado */
+
+    appearance: none;
+    -webkit-appearance: none;
 }
+
+.wpm-close:hover,
+.wpm-close:focus,
+.wpm-close:active {
+    background-color: #604c8d;
+    color: #fff;
+}
+
+/* Descripción */
+.wpm-description {
+    font-size: 18px;
+    margin: 0 auto 24px;
+
+    max-width: 600px;
+
+    color: #604c8d;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+.wpm-description {
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
