@@ -62,6 +62,7 @@ body.wpm-modal-open {
     margin: 0 auto;
 }
 
+/* Botón cerrar */
 .wpm-close {
     position: absolute;
     top: 24px;
@@ -70,44 +71,46 @@ body.wpm-modal-open {
     width: 48px;
     height: 48px;
 
-    background-color: #604c8d;
+    background-color: #908f8f;
     color: #fff;
     border: none;
 
     font-size: 32px;
-    line-height: 48px; /* centra la X verticalmente */
+    line-height: 48px;
     text-align: center;
 
     cursor: pointer;
-    border-radius: 6px; /* o 0 si lo querés bien cuadrado */
+    border-radius: 6px;
+
+    transition: background-color 0.25s ease, transform 0.15s ease;
 
     appearance: none;
     -webkit-appearance: none;
 }
 
+/* Hover más destacado */
 .wpm-close:hover,
-.wpm-close:focus,
+.wpm-close:focus {
+    background-color: #6f6e6e; /* gris más oscuro */
+    transform: scale(1.08);
+}
+
+/* Click */
 .wpm-close:active {
-    background-color: #604c8d;
-    color: #fff;
+    transform: scale(0.95);
 }
 
 /* Descripción */
 .wpm-description {
     font-size: 18px;
-    margin: 0 auto 24px;
+    line-height: 1.6;
+    font-weight: 500;
 
+    margin: 0 auto 24px;
     max-width: 600px;
 
-    color: #604c8d;
+    color: #908f8f;
     background: none;
     padding: 0;
     border-radius: 0;
 }
-
-.wpm-description {
-    font-size: 18px;
-    line-height: 1.6;
-    font-weight: 500;
-}
-
