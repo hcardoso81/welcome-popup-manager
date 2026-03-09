@@ -1,19 +1,18 @@
 <?php
-// admin/SettingsRegistry.php
 
-namespace WPM\Admin;
+namespace WPM1\Admin;
 
-use WPM\Domain\SettingsSanitizer;
+use WPM1\Domain\SettingsSanitizer;
 
-use WPM\Admin\Fields\EnabledField;
-use WPM\Admin\Fields\SettingsStartField;
-use WPM\Admin\Fields\DescriptionField;
-use WPM\Admin\Fields\LinkField;
-use WPM\Admin\Fields\ImageField;
-use WPM\Admin\Fields\DelayEnabledField;
-use WPM\Admin\Fields\DelaySecondsField;
-use WPM\Admin\Fields\DisplayModeField;
-use WPM\Admin\Fields\SettingsEndField;
+use WPM1\Admin\Fields\EnabledField;
+use WPM1\Admin\Fields\SettingsStartField;
+use WPM1\Admin\Fields\DescriptionField;
+use WPM1\Admin\Fields\LinkField;
+use WPM1\Admin\Fields\ImageField;
+use WPM1\Admin\Fields\DelayEnabledField;
+use WPM1\Admin\Fields\DelaySecondsField;
+use WPM1\Admin\Fields\DisplayModeField;
+use WPM1\Admin\Fields\SettingsEndField;
 
 if (!defined('ABSPATH')) {
     exit;

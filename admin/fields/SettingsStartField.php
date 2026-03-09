@@ -1,6 +1,6 @@
 <?php
 
-namespace WPM\Admin\Fields;
+namespace WPM1\Admin\Fields;
 
 // admin/fields/SettingsStartField.php
 class SettingsStartField {

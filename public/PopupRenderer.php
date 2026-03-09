@@ -1,13 +1,13 @@
 <?php
 
-namespace WPM\PublicSite;
+namespace WPM1\PublicSite;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-use WPM\Domain\Settings;
-use WPM\Domain\PopupRules;
+use WPM1\Domain\Settings;
+use WPM1\Domain\PopupRules;
 
 final class PopupRenderer
 {
@@ -36,14 +36,14 @@ final class PopupRenderer
     {
         wp_enqueue_style(
             'wpm-popup-css',
-            WPM_PLUGIN_URL . 'public/assets/popup.css',
+            WPM1_PLUGIN_URL . 'public/assets/popup.css',
             [],
             '1.0'
         );
 
         wp_enqueue_script(
             'wpm-popup-js',
-            WPM_PLUGIN_URL . 'public/assets/popup.js',
+            WPM1_PLUGIN_URL . 'public/assets/popup.js',
             [],
             '1.0',
             true
@@ -63,6 +63,6 @@ final class PopupRenderer
             'delay_ms'    => self::$rules->delayMs(),
         ];
 
-        require WPM_PLUGIN_PATH . 'public/views/popup.php';
+        require WPM1_PLUGIN_PATH . 'public/views/popup.php';
     }
 }

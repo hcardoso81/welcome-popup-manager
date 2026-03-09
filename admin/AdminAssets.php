@@ -1,7 +1,6 @@
 <?php
-// admin/AdminAssets.php
 
-namespace WPM\Admin;
+namespace WPM1\Admin;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -29,9 +28,9 @@ class AdminAssets
 
         wp_enqueue_script(
             'wpm-admin-js',
-            WPM_PLUGIN_URL . 'admin/assets/admin.js',
+            WPM1_PLUGIN_URL . 'admin/assets/admin.js',
             ['jquery'],
-            WPM_PLUGIN_VERSION,
+            WPM1_PLUGIN_VERSION,
             true
         );
     }

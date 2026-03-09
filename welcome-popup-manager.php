@@ -10,16 +10,24 @@
  * Text Domain: welcome-popup-manager
  */
 
-namespace WPM;
+namespace WPM1;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
 
-define('WPM_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('WPM_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('WPM_PLUGIN_VERSION', '1.0.0');
+if (!defined('WPM1_PLUGIN_PATH')) {
+    define('WPM1_PLUGIN_PATH', plugin_dir_path(__FILE__));
+}
 
-require_once WPM_PLUGIN_PATH . 'bootstrap/admin.php';
-require_once WPM_PLUGIN_PATH . 'bootstrap/public.php';
+if (!defined('WPM1_PLUGIN_URL')) {
+    define('WPM1_PLUGIN_URL', plugin_dir_url(__FILE__));
+}
+
+if (!defined('WPM1_PLUGIN_VERSION')) {
+    define('WPM1_PLUGIN_VERSION', '1.0.1');
+}
+
+require_once WPM1_PLUGIN_PATH . 'bootstrap/admin.php';
+require_once WPM1_PLUGIN_PATH . 'bootstrap/public.php';

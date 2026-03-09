@@ -1,7 +1,6 @@
 <?php
-// domain/PopupRules.php
 
-namespace WPM\Domain;
+namespace WPM1\Domain;
 
 if (!defined('ABSPATH')) {
     exit;

@@ -1,11 +1,11 @@
 <?php
 // admin/SettingsPageController.php
 
-namespace WPM\Admin;
+namespace WPM1\Admin;
 
-use WPM\Admin\AdminMenu;
-use WPM\Admin\AdminAssets;
-use WPM\Admin\SettingsRegistry;
+use WPM1\Admin\AdminMenu;
+use WPM1\Admin\AdminAssets;
+use WPM1\Admin\SettingsRegistry;
 
 if (!defined('ABSPATH')) {
     exit;

@@ -1,8 +1,8 @@
 <?php
 
-namespace WPM\Admin\Fields;
+namespace WPM1\Admin\Fields;
 
-use WPM\Domain\Settings;
+use WPM1\Domain\Settings;
 
 if (!defined('ABSPATH')) {
     exit;

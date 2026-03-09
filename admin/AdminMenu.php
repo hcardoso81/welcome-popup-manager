@@ -1,6 +1,6 @@
 <?php
 
-namespace WPM\Admin;
+namespace WPM1\Admin;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -20,6 +20,6 @@ class AdminMenu {
     }
 
     public static function render(): void {
-        require WPM_PLUGIN_PATH . 'views/admin-settings-page.php';
+        require WPM1_PLUGIN_PATH . 'views/admin-settings-page.php';
     }
 }
