@@ -1,44 +1,30 @@
 body.wpm-modal-open {
     overflow: hidden;
-    height: 100vh;
-    touch-action: none;
 }
 
-/* Overlay realmente fullscreen */
+/* Overlay transl¨²cido */
 #wpm-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-
-    background: #fff;
-    z-index: 99999;
-
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    overscroll-behavior: none;
+    z-index: 99999;
 }
 
-/* Modal fullscreen */
+/* Modal */
 .wpm-modal {
     width: 100%;
     height: 100%;
-    position: relative;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
     opacity: 0;
-    transform: scale(0.96);
-    transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
-
-    will-change: opacity, transform;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
 }
 
 .wpm-modal.is-visible {
@@ -46,23 +32,29 @@ body.wpm-modal-open {
     transform: scale(1);
 }
 
-/* Contenido centrado */
+/* Card glass */
 .wpm-modal-content {
-    max-width: 800px;
+    max-width: 700px;
+    width: 90%;
     padding: 32px;
+
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+
+    border-radius: 20px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+
     text-align: center;
 }
 
 /* Imagen */
 .wpm-modal-content img {
     max-width: 100%;
-    max-height: 60vh;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
+    max-height: 50vh;
+    margin-top: 16px;
 }
 
-/* Botón cerrar */
+/* Bot¨®n cerrar */
 .wpm-close {
     position: absolute;
     top: 24px;
@@ -84,14 +76,12 @@ body.wpm-modal-open {
 
     transition: background-color 0.25s ease, transform 0.15s ease;
 
-    appearance: none;
-    -webkit-appearance: none;
 }
 
-/* Hover más destacado */
+/* Hover m¨¢s destacado */
 .wpm-close:hover,
 .wpm-close:focus {
-    background-color: #6f6e6e; /* gris más oscuro */
+    background-color: #6f6e6e; /* gris m¨¢s oscuro */
     transform: scale(1.08);
 }
 
@@ -100,7 +90,7 @@ body.wpm-modal-open {
     transform: scale(0.95);
 }
 
-/* Descripción */
+/* Texto */
 .wpm-description {
     font-size: 18px;
     line-height: 1.6;
@@ -109,7 +99,7 @@ body.wpm-modal-open {
     margin: 0 auto 24px;
     max-width: 600px;
 
-    color: #908f8f;
+
     background: none;
     padding: 0;
     border-radius: 0;

@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 
 <div id="wpm-overlay" class="wpm-overlay" style="display:none;">
     <div
-        class="wpm-modal"
+        class="wpm-modal is-visible"
         data-delay="<?php echo esc_attr($data['delay_ms']); ?>"
         role="dialog"
         aria-modal="true"
