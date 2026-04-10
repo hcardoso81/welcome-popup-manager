@@ -38,14 +38,14 @@ final class PopupRenderer
             'wpm-popup-css',
             WPM1_PLUGIN_URL . 'public/assets/popup.css',
             [],
-            '1.0'
+            WPM1_PLUGIN_VERSION
         );
 
         wp_enqueue_script(
             'wpm-popup-js',
             WPM1_PLUGIN_URL . 'public/assets/popup.js',
             [],
-            '1.0',
+            WPM1_PLUGIN_VERSION,
             true
         );
     }
